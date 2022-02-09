@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web aplikacija</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+
+<div class="container mt-5">   
+
+    <h1 class="mb-3"><i class="bi bi-signal"></i> Oglasna ploča</h1>
+
+    <form action="/add-message" method="post">
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Unesi ime:</label>
+            <input type="text" required class="form-control" name="username" id="username">
+        </div>
+
+        <div class="mb-3">
+            <label for="text" class="form-label">Poruka:</label>
+            <textarea required class="form-control" name="text" id="text" rows="3"></textarea>
+        </div> 
+
+        <div>
+            <button type="submit" class="btn btn-primary">Objavi</button>
+            <button type="reset" class="btn btn-outline-secondary">Obriši</button>
+        </div>
+
+    </form>
+
+    <hr>
+
+    <h2 class="mb-3">Objave:</h2>
+
+    {% for x in message %}
+
+        <div class="card mb-3">
+
+            <div class="card-body">
+                <h6 class="card-title">{{ x.username }}</h6>
+                <p>
+                    {{ x.text }}
+                </p>
+            </div>
+
+            <div class="card-footer">
+                <a href="/delete/{{x.id}}" class="text-muted text-decoration-none">
+                    <i class="bi bi-trash"></i> obriši
+                </a>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div> 
+
+<!-- Bootstrap JS -->   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
